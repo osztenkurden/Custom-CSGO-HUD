@@ -1,6 +1,6 @@
 # Lexogrine HUD Manager file
 
-[DOWNLOAD](KomodoHUDOld.zip)
+[DOWNLOAD](KomodoHUDOld.zip?raw=true)
 
 # CS:GO Observer Custom HUD
 
