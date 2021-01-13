@@ -3,7 +3,7 @@
  */
 const { href } = window.location;
 
-const segment = href.substr(href.indexOf('/huds/')+6);
+const segment = href.substr(href.indexOf('/huds/') + 6);
 const HUDName = segment.substr(0, segment.lastIndexOf('/'));
 
 io.on("readyToRegister", () => {
@@ -21,42 +21,85 @@ const actions = new ActionManager();
 
 io.on("hud_config", configs.save);
 
-io.on("hud_action", ({data, action}) => {
+io.on("hud_action", ({ data, action }) => {
   actions.execute(action, data);
 });
 
 io.on("keybindAction", actions.execute);
 
+const GSI = new CSGOGSI();
+
+io.on("update", data => {
+  GSI.digest(data);
+});
+
+io.on("update_mirv", data => {
+  GSI.digestMIRV(data)
+});
+
+const killIcon = (iconName, show) => `<div class="kill-icon ${show ? 'show' : ''}"><img src="./elements/${iconName}.png" /></div>`;
+
+const killfeedEntry = kill => {
+  const assistHTML = kill.assister ? `
+  <div class="assist-container">
+    <div class="plus">+</div>
+    ${killIcon("flashed", kill.flashed)}
+    <div class="assist-name ${kill.assister.team.side}">${kill.assister.name}</div>
+  </div>
+  `: ``
+  const html = `
+  <div class="kill-container"><div class="kill">
+    ${killIcon("attackerblind", kill.attackerblind)}
+    <div class="killer-name ${kill.killer.team.side}">${kill.killer.name}</div>
+    ${assistHTML}
+    <div class="kill-weapon">
+      <img src="/files/img/weapons/${kill.weapon}.png" />
+    </div>
+    ${killIcon("noscope", kill.noscope)}
+    ${killIcon("thrusmoke", kill.thrusmoke)}
+    ${killIcon("wallbang", kill.wallbang)}
+    ${killIcon("headshot", kill.headshot)}
+    <div class="victim-name ${kill.victim.team.side}">${kill.victim.name}</div>
+    </div> </div>  
+`;
+  return html
+}
+const addKill = kill => {
+  const killHTML = killfeedEntry(kill);
+  $("#killfeed").append($(killHTML));
+}
+
+GSI.on("kill", kill => {
+  addKill(kill);
+});
+
 const playerAvatars = {};
 
 const getAvatar = (steamid) => {
-  if(!steamid) return;
-  if(playerAvatars[steamid]){
+  if (!steamid) return;
+  if (playerAvatars[steamid]) {
     return avatars[steamid];
   }
   playerAvatars[steamid] = new Promise((resolve, rej) => {
     fetch(`/api/players/avatar/steamid/${steamid}`)
       .then(res => res.json())
       .then(res => {
-        console.log(res);
         resolve(res);
       })
       .catch(() => {
         playerAvatars[steamid] = null;
-        console.log("shit")
         resolve(null);
       });
   });
 }
 
 const fillAvatar = (side, number, steamid) => {
-  if(!steamid) return;
+  if (!steamid) return;
   getAvatar(steamid);
   playerAvatars[steamid].then(avatar => {
-    console.log(avatar)
-    if(!avatar) return;
-    if(!avatar.custom && !avatar.steam) return;
-    if($(`#players_${side} #player${number} #player_image`).attr("src") === (avatar.custom || avatar.steam)) return;
+    if (!avatar) return;
+    if (!avatar.custom && !avatar.steam) return;
+    if ($(`#players_${side} #player${number} #player_image`).attr("src") === (avatar.custom || avatar.steam)) return;
     $(`#players_${side} #player${number} #player_image`).attr("src", avatar.custom || avatar.steam);
   });
 }
@@ -103,6 +146,11 @@ function updatePage(data) {
   var map = data.map();
   var previously = data.previously();
   var bomb = data.info.bomb;
+
+  if(round && round.phase === "freezetime" && $("#killfeed").html()){
+    console.log("Killfeed cleared")
+    $("#killfeed").html('');
+  }
 
   var test_player = data.getPlayer(1);
   if (test_player) {
@@ -398,9 +446,9 @@ function updateStateOver(phase, round, previously) {
               animateRoundTimer("round_time_reached", false);
             }
           } else if (!t_alive) {
-          // * CT ELIMINATE T
-          animateRoundTimer("players_eliminated_CT", false);
-        }
+            // * CT ELIMINATE T
+            animateRoundTimer("players_eliminated_CT", false);
+          }
       }
     } else if (round.bomb == "planted") {
       if (checkPrev(previously, "live")) animateRoundTimer("players_eliminated_T", false);
@@ -653,7 +701,7 @@ function fillObserved(obs) {
 
   getAvatar(obs.steamid);
   playerAvatars[obs.steamid].then(avatar => {
-    if(!avatar || (!avatar.custom && !avatar.steam)) return;
+    if (!avatar || (!avatar.custom && !avatar.steam)) return;
     $("#obs_img").attr("src", avatar.custom || avatar.steam);
   });
 
@@ -804,7 +852,7 @@ function updatePlayers(players, observed, phase, previously) {
 function fillPlayers(teams, observed, phase, previously) {
   if (teams.left.players) {
     for (var i = 0; i < 5; i++) {
-      fillAvatar("left", i+1, teams.left.players[i].steamid);
+      fillAvatar("left", i + 1, teams.left.players[i].steamid);
       if (i >= teams.left.players.length) {
         $("#players_left #player_section")
           .find("#player" + (i + 1))
@@ -819,7 +867,7 @@ function fillPlayers(teams, observed, phase, previously) {
   }
   if (teams.right.players) {
     for (var i = 0; i < 5; i++) {
-      fillAvatar("right", i+1, teams.right.players[i].steamid);
+      fillAvatar("right", i + 1, teams.right.players[i].steamid);
       if (i >= teams.right.players.length) {
         $("#players_right #player_section")
           .find("#player" + (i + 1))

@@ -18,7 +18,73 @@ body {
   transform: translateX(-50%);
   background-color: var(--main-panel-color);
 }
-
+#killfeed {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  right: 20px;
+  top: 20px;
+  align-items: flex-end;
+}
+.kill img {
+  max-height: 20px;
+}
+.kill .T {
+  color: var(--color-new-t);
+}
+.kill .CT {
+  color: var(--color-new-ct);
+}
+#killfeed .kill {
+  display: flex;
+  background-color: var(--sub-panel-color);
+  height: 35px;
+  align-items: center;
+  padding: 0 15px;
+}
+@keyframes KillLifeCycle {
+	0% {
+		opacity: 0;
+		height: 0;
+	}
+	5% {
+		opacity: 1;
+		height: 40px;
+	}
+	95% {
+		opacity: 1;
+		height: 40px;
+	}
+	100% {
+		opacity: 0;
+		height: 0;
+	}
+}
+#killfeed .kill-container {
+  animation: KillLifeCycle 5s linear 1;
+  animation-fill-mode: forwards;/**/
+}
+.killer-name, .assist-name, .victim-name {
+  margin: 0 15px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.assist-container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+.assist-container .plus {
+  margin-right: 15px;
+}
+.kill-icon {
+  display: none;
+}
+.kill-icon.show {
+  display: flex;
+}
 #left_team {
   position: relative;
   float: left;
