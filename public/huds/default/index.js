@@ -1,3 +1,67 @@
+/**
+ * REQUIRED
+ */
+const { href } = window.location;
+
+const segment = href.substr(href.indexOf('/huds/')+6);
+const HUDName = segment.substr(0, segment.lastIndexOf('/'));
+
+io.on("readyToRegister", () => {
+  io.emit("register", HUDName, false);
+});
+
+io.on("refreshHUD", window.top.location.reload);
+
+/**
+ * ADDITIONAL FEATURES
+ */
+
+const configs = new ConfigManager();
+const actions = new ActionManager();
+
+io.on("hud_config", configs.save);
+
+io.on("hud_action", ({data, action}) => {
+  actions.execute(action, data);
+});
+
+io.on("keybindAction", actions.execute);
+
+const playerAvatars = {};
+
+const getAvatar = (steamid) => {
+  if(!steamid) return;
+  if(playerAvatars[steamid]){
+    return avatars[steamid];
+  }
+  playerAvatars[steamid] = new Promise((resolve, rej) => {
+    fetch(`/api/players/avatar/steamid/${steamid}`)
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        resolve(res);
+      })
+      .catch(() => {
+        playerAvatars[steamid] = null;
+        console.log("shit")
+        resolve(null);
+      });
+  });
+}
+
+const fillAvatar = (side, number, steamid) => {
+  if(!steamid) return;
+  getAvatar(steamid);
+  playerAvatars[steamid].then(avatar => {
+    console.log(avatar)
+    if(!avatar) return;
+    if(!avatar.custom && !avatar.steam) return;
+    if($(`#players_${side} #player${number} #player_image`).attr("src") === (avatar.custom || avatar.steam)) return;
+    $(`#players_${side} #player${number} #player_image`).attr("src", avatar.custom || avatar.steam);
+  });
+}
+
+
 const COLOR_CT = "rgba(87, 136, 168, 1.0)";
 const COLOR_T = "rgba(193, 149, 17, 1.0)";
 const COLOR_NEW_CT = "rgba(90, 184, 244, 1.0)";
@@ -38,7 +102,7 @@ function updatePage(data) {
   var round = data.round();
   var map = data.map();
   var previously = data.previously();
-  var bomb = data.bomb();
+  var bomb = data.info.bomb;
 
   var test_player = data.getPlayer(1);
   if (test_player) {
@@ -55,11 +119,10 @@ function updatePage(data) {
     teams.right.flag = team_two.country_code || null;
   }
   if (_print_player_data) {
-    printPlayerData(players);
+    //printPlayerData(players);
   }
   setupBestOf(matchup, match);
   updateTopPanel();
-  updateLeague();
   updateRoundNow(round, map);
   updateRoundState(phase, round, map, previously, bomb, players);
   updateObserved(observed);
@@ -150,8 +213,8 @@ function updateTopPanel() {
   if (!teams.right.logo) {
     teams.right.logo = "logo_" + teams.right.side.toLowerCase() + "_default.png";
   }
-  $("#left_team #team_logo").attr("src", "/storage/" + teams.left.logo);
-  $("#right_team #team_logo").attr("src", "/storage/" + teams.right.logo);
+  $("#left_team #team_logo").attr("src", teams.left.logo);
+  $("#right_team #team_logo").attr("src", teams.right.logo);
   //#endregion
 
   //#region Team Flag
@@ -168,14 +231,6 @@ function updateTopPanel() {
   //#endregion
 }
 
-function updateLeague() {
-  $("#players_left #box_image").attr("src", _left_image);
-  $("#players_left #main_primary").text(_left_primary);
-  $("#players_left #main_secondary").text(_left_secondary);
-  $("#players_right #box_image").attr("src", _right_image);
-  $("#players_right #main_primary").text(_right_primary);
-  $("#players_right #main_secondary").text(_right_secondary);
-}
 
 function updateRoundNow(round, map) {
   round_now = map.round + (round.phase == "over" || round.phase == "intermission" ? 0 : 1);
@@ -595,6 +650,13 @@ function fillObserved(obs) {
   let stats = obs.getStats();
   let weapons = obs.weapons;
   team_color = obs.team == "CT" ? COLOR_NEW_CT : COLOR_NEW_T;
+
+  getAvatar(obs.steamid);
+  playerAvatars[obs.steamid].then(avatar => {
+    if(!avatar || (!avatar.custom && !avatar.steam)) return;
+    $("#obs_img").attr("src", avatar.custom || avatar.steam);
+  });
+
   //#region Poles
   $("#obs_lane3_left_pole").css("background-color", team_color);
   $("#obs_lane3_right_pole").css("background-color", team_color);
@@ -623,26 +685,9 @@ function fillObserved(obs) {
     }
   }
 
-  if (disp_avatars) {
-    if (disp_player_avatars) {
-      if (obs.hasOwnProperty("avatar")) {
-        // Custom Set Avatar
-        if (obs.avatar) $("#obs_img").attr("src", "/storage/" + obs.avatar);
-      } else {
-        // Just Use Team Logo
-        $("#obs_img").attr("src", "/storage/" + _img);
-      }
-    } else {
-      loadAvatar(obs.steamid, function () {
-        $("#obs_img").attr("src", "/av/" + obs.steamid);
-      });
-    }
-  } else {
-    $("#obs_avatar").css("opacity", 0);
-  }
 
   // Team Logo and Flags
-  $("#obs_team_img").attr("src", "/storage/" + _img);
+  $("#obs_team_img").attr("src", _img);
   if (disp_player_flags) {
     if (obs.hasOwnProperty("teamData")) {
       if (obs.teamData.hasOwnProperty("country_code")) {
@@ -759,6 +804,7 @@ function updatePlayers(players, observed, phase, previously) {
 function fillPlayers(teams, observed, phase, previously) {
   if (teams.left.players) {
     for (var i = 0; i < 5; i++) {
+      fillAvatar("left", i+1, teams.left.players[i].steamid);
       if (i >= teams.left.players.length) {
         $("#players_left #player_section")
           .find("#player" + (i + 1))
@@ -773,6 +819,7 @@ function fillPlayers(teams, observed, phase, previously) {
   }
   if (teams.right.players) {
     for (var i = 0; i < 5; i++) {
+      fillAvatar("right", i+1, teams.right.players[i].steamid);
       if (i >= teams.right.players.length) {
         $("#players_right #player_section")
           .find("#player" + (i + 1))
@@ -810,42 +857,7 @@ function fillPlayer(player, nr, side, observed, phase, previously) {
   $top.find("#player_alias_text").css("color", dead ? COLOR_WHITE_HALF : COLOR_WHITE);
 
   $player.find("#player_image").removeClass("dead");
-  if (disp_player_avatars) {
-    if (player.hasOwnProperty("avatar")) {
-      // Custom Set Avatar
-      if (player.avatar)
-        $player
-        .find("#player_image")
-        .attr("src", "/storage/" + player.avatar)
-        .addClass(dead ? "dead" : "");
-    } else {
-      // Just Use Team Logo
-      if (team == "ct") {
-        if (teams.left.side == "ct") {
-          _img = teams.left.logo;
-        } else {
-          _img = teams.right.logo;
-        }
-      } else if (team == "t") {
-        if (teams.left.side == "t") {
-          _img = teams.left.logo;
-        } else {
-          _img = teams.right.logo;
-        }
-      }
-      $player
-        .find("#player_image")
-        .attr("src", "/storage/" + _img)
-        .addClass(dead ? "dead" : "");
-    }
-  } else {
-    loadAvatar(steamid, function () {
-      $player
-        .find("#player_image")
-        .attr("src", "/av/" + steamid)
-        .addClass(dead ? "dead" : "");
-    });
-  }
+
 
   if (slot >= 1 && slot <= 5) {
     $top.find("#player_alias_text").text(slot + "| " + player.name);

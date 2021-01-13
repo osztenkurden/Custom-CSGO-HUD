@@ -1,0 +1,6 @@
+[
+    {
+        "bind":"Alt+A",
+        "action":"toggleAvatars"
+    }
+]

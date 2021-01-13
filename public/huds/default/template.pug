@@ -5,21 +5,22 @@ html
     script.
       var ip = "#{ip}",
       port = "#{port}",
-      _print_player_data = #{print_player_data},
-      disp_avatars = #{display_avatars},
-      disp_player_avatars = #{display_player_avatars},
-      disp_team_flags = #{display_team_flags},
-      disp_player_flags = #{display_player_flags},
+      _print_player_data = "#{print_player_data}",
+      disp_avatars = "#{display_avatars}",
+      disp_player_avatars = "#{display_player_avatars}",
+      disp_team_flags = "#{display_team_flags}",
+      disp_player_flags = "#{display_player_flags}",
       _left_image = "#{left_image}",
       _left_primary = "#{left_primary}",
       _left_secondary = "#{left_secondary}",
       _right_image = "#{right_image}",
       _right_primary = "#{right_primary}",
       _right_secondary = "#{right_secondary}",
-      special_event = "#{special_event}",
       delay = #{delay};
+    script(src="./manager.js")
     script(src="/js/main.js")
     script(src=hud)
+    script(src="./actions.js")
     link(rel='stylesheet', href=css)
     link(rel='stylesheet', href=anim)
   body
