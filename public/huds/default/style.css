@@ -356,7 +356,7 @@ body {
   position: relative;
   width: 30px;
   height: 30px;
-  background-image: url("/files/img/elements/icon_defuse_CT.png");
+  background-image: url("./elements/icon_defuse_CT.png");
   max-height: 30px;
   max-width: auto;
   background-repeat: no-repeat;
@@ -1874,7 +1874,7 @@ body {
 }
 
 .blind {
-  background-image: url("/files/img/elements/icon_blind.png");
+  background-image: url("./elements/icon_blind.png");
   max-height: 70px;
   max-width: 34px;
   background-repeat: no-repeat;
@@ -1905,7 +1905,7 @@ body {
 }
 
 .burnt {
-  background-image: url("/files/img/elements/icon_burning.png");
+  background-image: url("./elements/icon_burning.png");
   max-height: 70px;
   max-width: 34px;
   background-repeat: no-repeat;
@@ -2145,7 +2145,7 @@ body {
 }
 
 .bomb_active {
-  background-image: url("/files/img/elements/icon_c4_T.gif");
+  background-image: url("./elements/icon_c4_T.gif");
   max-height: 40px;
   width: auto;
   top: 8px;
@@ -2155,7 +2155,7 @@ body {
 }
 
 .bomb_exploded {
-  background-image: url("/files/img/elements/icon_bomb_explosion_T.png");
+  background-image: url("./elements/icon_bomb_explosion_T.png");
   max-height: 40px;
   width: auto;
   top: 8px;
@@ -2165,7 +2165,7 @@ body {
 }
 
 .bomb_defused {
-  background-image: url("/files/img/elements/icon_defuse_CT.png");
+  background-image: url("./elements/icon_defuse_CT.png");
   max-height: 40px;
   width: auto;
   top: 8px;
@@ -2175,7 +2175,7 @@ body {
 }
 
 .pause_active {
-  background-image: url("/files/img/elements/icon_pause_default.png");
+  background-image: url("./elements/icon_pause_default.png");
   max-height: 40px;
   width: auto;
   top: 8px;
@@ -2185,7 +2185,7 @@ body {
 }
 
 .pause_active_T {
-  background-image: url("/files/img/elements/icon_pause_T.png");
+  background-image: url("./elements/icon_pause_T.png");
   max-height: 40px;
   width: auto;
   top: 8px;
@@ -2195,7 +2195,7 @@ body {
 }
 
 .pause_active_CT {
-  background-image: url("/files/img/elements/icon_pause_CT.png");
+  background-image: url("./elements/icon_pause_CT.png");
   max-height: 40px;
   width: auto;
   top: 8px;
@@ -2205,7 +2205,7 @@ body {
 }
 
 .players_eliminated_T {
-  background-image: url("/files/img/elements/icon_skull_T.png");
+  background-image: url("./elements/icon_skull_T.png");
   max-height: 40px;
   width: auto;
   top: 8px;
@@ -2215,7 +2215,7 @@ body {
 }
 
 .players_eliminated_CT {
-  background-image: url("/files/img/elements/icon_skull_CT.png");
+  background-image: url("./elements/icon_skull_CT.png");
   max-height: 40px;
   width: auto;
   top: 8px;
@@ -2225,7 +2225,7 @@ body {
 }
 
 .round_time_reached {
-  background-image: url("/files/img/elements/icon_timer_CT.png");
+  background-image: url("./elements/icon_timer_CT.png");
   max-height: 40px;
   width: auto;
   top: 8px;
@@ -2235,7 +2235,7 @@ body {
 }
 
 .round_warmup {
-  background-image: url("/files/img/elements/icon_hourglass_default.png");
+  background-image: url("./elements/icon_hourglass_default.png");
   max-height: 40px;
   width: auto;
   top: 8px;
@@ -2245,7 +2245,7 @@ body {
 }
 
 .obs_skull_default {
-  background-image: url("/files/img/elements/icon_skull_default.png");
+  background-image: url("./elements/icon_skull_default.png");
   max-height: 18px;
   max-width: 18px;
   background-repeat: no-repeat;
@@ -2254,7 +2254,7 @@ body {
 }
 
 .obs_skull_T {
-  background-image: url("/files/img/elements/icon_skull_T.png");
+  background-image: url("./elements/icon_skull_T.png");
   max-height: 18px;
   max-width: 18px;
   background-repeat: no-repeat;
@@ -2263,7 +2263,7 @@ body {
 }
 
 .obs_skull_CT {
-  background-image: url("/files/img/elements/icon_skull_CT.png");
+  background-image: url("./elements/icon_skull_CT.png");
   max-height: 18px;
   max-width: 18px;
   background-repeat: no-repeat;
@@ -2272,7 +2272,7 @@ body {
 }
 
 .health_default {
-  background-image: url("/files/img/elements/icon_health_default.png");
+  background-image: url("./elements/icon_health_default.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2281,7 +2281,7 @@ body {
 }
 
 .health_CT {
-  background-image: url("/files/img/elements/icon_health_CT.png");
+  background-image: url("./elements/icon_health_CT.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2290,7 +2290,7 @@ body {
 }
 
 .health_T {
-  background-image: url("/files/img/elements/icon_health_T.png");
+  background-image: url("./elements/icon_health_T.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2299,7 +2299,7 @@ body {
 }
 
 .health_full_default {
-  background-image: url("/files/img/elements/icon_health_full_default.png");
+  background-image: url("./elements/icon_health_full_default.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2308,7 +2308,7 @@ body {
 }
 
 .health_full_CT {
-  background-image: url("/files/img/elements/icon_health_full_CT.png");
+  background-image: url("./elements/icon_health_full_CT.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2317,7 +2317,7 @@ body {
 }
 
 .health_full_T {
-  background-image: url("/files/img/elements/icon_health_full_T.png");
+  background-image: url("./elements/icon_health_full_T.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2326,7 +2326,7 @@ body {
 }
 
 .armor_none_default {
-  background-image: url("/files/img/elements/icon_armor_none_default.png");
+  background-image: url("./elements/icon_armor_none_default.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2335,7 +2335,7 @@ body {
 }
 
 .armor_none_CT {
-  background-image: url("/files/img/elements/icon_armor_none_CT.png");
+  background-image: url("./elements/icon_armor_none_CT.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2344,7 +2344,7 @@ body {
 }
 
 .armor_none_T {
-  background-image: url("/files/img/elements/icon_armor_none_T.png");
+  background-image: url("./elements/icon_armor_none_T.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2353,7 +2353,7 @@ body {
 }
 
 .armor_helm_default {
-  background-image: url("/files/img/elements/icon_armor_helmet_default.png");
+  background-image: url("./elements/icon_armor_helmet_default.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2362,7 +2362,7 @@ body {
 }
 
 .armor_helm_CT {
-  background-image: url("/files/img/elements/icon_armor_helmet_CT.png");
+  background-image: url("./elements/icon_armor_helmet_CT.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2371,7 +2371,7 @@ body {
 }
 
 .armor_helm_T {
-  background-image: url("/files/img/elements/icon_armor_helmet_T.png");
+  background-image: url("./elements/icon_armor_helmet_T.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2380,7 +2380,7 @@ body {
 }
 
 .armor_kev_default {
-  background-image: url("/files/img/elements/icon_armor_full_default.png");
+  background-image: url("./elements/icon_armor_full_default.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2389,7 +2389,7 @@ body {
 }
 
 .armor_kev_CT {
-  background-image: url("/files/img/elements/icon_armor_full_CT.png");
+  background-image: url("./elements/icon_armor_full_CT.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2398,7 +2398,7 @@ body {
 }
 
 .armor_kev_T {
-  background-image: url("/files/img/elements/icon_armor_full_T.png");
+  background-image: url("./elements/icon_armor_full_T.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2407,7 +2407,7 @@ body {
 }
 
 .armor_half_default {
-  background-image: url("/files/img/elements/icon_armor_half_default.png");
+  background-image: url("./elements/icon_armor_half_default.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2416,7 +2416,7 @@ body {
 }
 
 .armor_half_CT {
-  background-image: url("/files/img/elements/icon_armor_half_CT.png");
+  background-image: url("./elements/icon_armor_half_CT.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2425,7 +2425,7 @@ body {
 }
 
 .armor_half_T {
-  background-image: url("/files/img/elements/icon_armor_half_T.png");
+  background-image: url("./elements/icon_armor_half_T.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2434,7 +2434,7 @@ body {
 }
 
 .armor_half_helm_default {
-  background-image: url("/files/img/elements/icon_armor_half_helmet_default.png");
+  background-image: url("./elements/icon_armor_half_helmet_default.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2443,7 +2443,7 @@ body {
 }
 
 .armor_half_helm_CT {
-  background-image: url("/files/img/elements/icon_armor_half_helmet_CT.png");
+  background-image: url("./elements/icon_armor_half_helmet_CT.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2452,7 +2452,7 @@ body {
 }
 
 .armor_half_helm_T {
-  background-image: url("/files/img/elements/icon_armor_half_helmet_T.png");
+  background-image: url("./elements/icon_armor_half_helmet_T.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2461,7 +2461,7 @@ body {
 }
 
 .bullets_default {
-  background-image: url("/files/img/elements/icon_bullets_default.png");
+  background-image: url("./elements/icon_bullets_default.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2470,7 +2470,7 @@ body {
 }
 
 .bullets_CT {
-  background-image: url("/files/img/elements/icon_bullets_CT.png");
+  background-image: url("./elements/icon_bullets_CT.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2479,7 +2479,7 @@ body {
 }
 
 .bullets_T {
-  background-image: url("/files/img/elements/icon_bullets_T.png");
+  background-image: url("./elements/icon_bullets_T.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2548,7 +2548,7 @@ body {
 }
 
 .obs_kit {
-  background-image: url("/files/img/elements/icon_defuse_default.png");
+  background-image: url("./elements/icon_defuse_default.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2557,7 +2557,7 @@ body {
 }
 
 .obs_bomb {
-  background-image: url("/files/img/elements/icon_bomb_default.png");
+  background-image: url("./elements/icon_bomb_default.png");
   max-height: 30px;
   max-width: 30px;
   background-repeat: no-repeat;
@@ -2566,7 +2566,7 @@ body {
 }
 
 .player_kit {
-  background-image: url("/files/img/elements/icon_defuse_default.png");
+  background-image: url("./elements/icon_defuse_default.png");
   max-height: 25px;
   max-width: 25px;
   background-repeat: no-repeat;
@@ -2575,7 +2575,7 @@ body {
 }
 
 .player_bomb {
-  background-image: url("/files/img/elements/icon_bomb_default.png");
+  background-image: url("./elements/icon_bomb_default.png");
   max-height: 25px;
   max-width: 25px;
   background-repeat: no-repeat;
@@ -2584,7 +2584,7 @@ body {
 }
 
 .player_bomb_selected {
-  background-image: url("/files/img/elements/icon_bomb_T.png");
+  background-image: url("./elements/icon_bomb_T.png");
   max-height: 25px;
   max-width: 25px;
   background-repeat: no-repeat;
@@ -2593,7 +2593,7 @@ body {
 }
 
 .player_skull_default {
-  background-image: url("/files/img/elements/icon_skull_default.png");
+  background-image: url("./elements/icon_skull_default.png");
   max-height: 18px;
   max-width: 18px;
   background-repeat: no-repeat;
